@@ -6,8 +6,8 @@ const clientsRoutes = require('./routes/clients');
 
 mongoose
 	.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-	.then(() => console.log('Connexion à MongoDB réussie !'))
-	.catch(() => console.log('Connexion à MongoDB échouée !'));
+	.then(() => console.log('Succesful connection to MongoDB !'))
+	.catch(() => console.log('Error connecting to MongoDB !'));
 
 const app = express();
 

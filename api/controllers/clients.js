@@ -1,7 +1,7 @@
 const Client = require('../models/Client');
 
 exports.createClient = (req, res, next) => {
-	const client = req.body;
+	const client = new Client(req.body);
 	client
 		.save()
 		.then(() => res.status(201).json({ message: 'New client saved' }))
@@ -19,28 +19,20 @@ exports.getAllClients = (req, res, next) => {
 };
 
 exports.getOneClient = (req, res, next) => {
-	Client.findOne({
-		_id: req.params.id,
-	})
+	Client.findById(req.params.id)
 		.then((client) => res.status(200).json(client))
-		.catch((err) => res.status(400).json({ error: err }));
+		.catch((err) => res.status(400).json({ err }));
 };
 
 exports.modifyClient = (req, res, next) => {
 	const client = req.body;
-	Client.updateOne({ _id: req.params.id }, { client, _id: req.params.id })
+	Client.findByIdAndUpdate(req.params.id, client)
 		.then(() => res.status(200).json({ message: 'Client succesfully updated' }))
 		.catch((err) => res.status(400).json({ err }));
 };
 
 exports.deleteClient = (req, res, next) => {
-	Client.findOne({ _id: req.params.id })
-		.then((client) => {
-			Client.deleteOne({ _id: req.params.id })
-				.then(() =>
-					res.status(200).json({ message: 'Client successfully deleted' })
-				)
-				.catch((err) => res.status(400).json({ err }));
-		})
+	Client.findByIdAndDelete(req.params.id)
+		.then(() => res.status(200).json({ message: 'Client succesfully deleted' }))
 		.catch((err) => res.status(500).json({ err }));
 };

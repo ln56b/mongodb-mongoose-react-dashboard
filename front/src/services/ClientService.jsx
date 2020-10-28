@@ -13,7 +13,7 @@ const findOne = (id) => {
 };
 
 const update = (id, client) => {
-	return http.put(`/rides/${id}`, client);
+	return http.put(`/clients/${id}`, client);
 };
 
 const remove = (id) => {

@@ -12,7 +12,6 @@ import Button from 'react-bootstrap/Button';
 function Dashboard() {
 	// State
 	const initialClientState = {
-		id: null,
 		genre: '',
 		prenom: '',
 		nom: '',
@@ -49,7 +48,7 @@ function Dashboard() {
 
 	//TODO
 	const updateClient = (client) => {
-		ClientService.update(client.id, client)
+		ClientService.update(client._id, client)
 			.then(() => setClient(initialClientState))
 			.then(() => {
 				history.push('/');
@@ -72,7 +71,7 @@ function Dashboard() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		!client.id ? createClient() : updateClient(client);
+		!client._id ? createClient() : updateClient(client);
 	};
 
 	return (
