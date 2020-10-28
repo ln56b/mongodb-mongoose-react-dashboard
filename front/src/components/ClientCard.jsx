@@ -31,7 +31,7 @@ function ClientCard({ client, getClientById, deleteClient }) {
 					</Link>
 					<Button
 						variant="danger"
-						onClick={() => deleteClient(client.id)}
+						onClick={() => deleteClient(client._id)}
 						style={{ margin: '1rem' }}
 					>
 						Delete
